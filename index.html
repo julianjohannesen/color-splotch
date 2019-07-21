@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fading Splotches</title>
+
+    <style>
+        body {
+            margin: 30px auto;
+            text-align: center;
+            background-color: #161414;
+            color: #999;
+        }
+
+        #canvas {
+            border: 1px solid #333;
+            background-color: #000;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="640" height="640">
+
+    </canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function draw(ms) {
+            console.log(ms);
+            requestAnimationFrame(draw);
+
+            ctx.fillStyle = 'black';
+            ctx.globalAlpha = 0.02;
+
+            // Save the preceding context
+            ctx.save();
+
+
+            // Draw a low opacity black rectangle
+            ctx.fillRect(0, 0, 640, 640);
+
+            // Set color to white, fully opaque
+            ctx.fillStyle = 'white';
+            ctx.globalAlpha = 1;
+
+            // Get a random location and radius
+            const x = Math.random() * 640;
+            const y = Math.random() * 640;
+            const r = Math.random() * 50;
+
+            // Draw a circle at that location
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+
+            // Restore the previous context
+            ctx.restore();
+
+        }
+
+        // Initiate draw
+        requestAnimationFrame(draw);
+
+    </script>
+</body>
+
+</html>
