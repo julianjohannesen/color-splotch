@@ -34,7 +34,7 @@
         const ctx = canvas.getContext('2d');
 
         function draw(ms) {
-            console.log(ms);
+            
             requestAnimationFrame(draw);
 
             ctx.fillStyle = 'black';
@@ -48,7 +48,7 @@
             ctx.fillRect(0, 0, 640, 640);
 
             // Set color to white, fully opaque
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = `hsl(${Math.random() * 255}, 100%, 50%)`;
             ctx.globalAlpha = 1;
 
             // Get a random location and radius
